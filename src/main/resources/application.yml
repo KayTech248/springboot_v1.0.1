@@ -1,0 +1,96 @@
+#Default configs
+server:
+  port: 8085
+
+spring:
+  profiles:
+    active: dev
+
+---
+#DEV configs
+HelloWorld:
+  greeting: Hope you are enjoying it here in DEV!!!
+  message: Hello World!! yessir DEV
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  application:
+    name: spring-boot-tutorial
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ''
+    url: jdbc:mysql://localhost:3306/4iretechdb_dev
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+#Expose all endpoints
+management:
+  endpoint:
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "beans"
+    jmx:
+      exposure:
+        include: "*"
+
+---
+#TST Configs
+
+HelloWorld:
+  greeting: Hope you are enjoying it here in TST!!!
+  message: Hello World!! yessir TST
+
+spring:
+  config:
+    activate:
+      on-profile: tst
+  application:
+    name: spring-boot-tutorial
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ''
+    url: jdbc:mysql://localhost:3306/4iretechdb_tst
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+---
+#PRD configs
+
+HelloWorld:
+  greeting: Hope you are enjoying it here in PRD!!!
+  message: Hello World!! yessir PRD
+
+spring:
+  config:
+    activate:
+      on-profile: prd
+  application:
+    name: spring-boot-tutorial
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ''
+    url: jdbc:mysql://localhost:3306/4iretechdb_prd
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+---
+#Run the following to activate profile:
+  #java -jar -Dspring.profiles.active=tst spring-boot-tutorial-1.0.0.jar
+  #D stands for define system property
+#In essence, a JAR file is a convenient way to package and distribute Java code and its dependencies.
